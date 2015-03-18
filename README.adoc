@@ -1,1 +1,25 @@
-# fsharp-doc 
+== F#
+
+:toc:
+:toc-placement: preamble
+
+=== Links
+
+
+.Bulleted
+* http://www.tryfsharp.org/
+* http://en.wikibooks.org/wiki/F_Sharp_Programming
+
+== let
+
+[source,fsharp]
+
+
+
+=== mutable
+
+[source,fsharp]
+let mutable modifiable = "original value"
+modifiable <- "new value"
+
+
