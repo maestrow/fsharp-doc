@@ -64,7 +64,7 @@ let slowMultiply a b =
 == Chaining
 
 [source,fsharp]
-\[0..100\]
+ [0..100]
 |> List.filter (fun x -> x % 2 = 0)
 |> List.map (fun x -> x * 2)
 |> List.sum
