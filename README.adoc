@@ -1,20 +1,22 @@
-== F#
-
+= F# Cheat Sheet
 :toc:
 :toc-placement: preamble
 
-=== Links
+Content
 
+== Links
 
-.Bulleted
 * http://www.tryfsharp.org/
 * http://en.wikibooks.org/wiki/F_Sharp_Programming
 
 == let
 
+*let* is used to bind a name to a value. 
+Each binding has a type.
 [source,fsharp]
-
-
+let anInt = 10
+let aFloat = 20.0
+let aString = "I'm a string!"
 
 === mutable
 
@@ -22,4 +24,56 @@
 let mutable modifiable = "original value"
 modifiable <- "new value"
 
+== Functions
 
+Type will be inferred
+[source,fsharp]
+let add x y =
+    x + y
+add 2 2
+
+Specify type explicitly
+[source,fsharp]
+let toHackerTalk (phrase:string) : string =
+    phrase.Replace('t', '7').Replace('o', '0')
+
+Anonymous functioncs
+[source,fsharp]
+let twoTest test =
+    test 2
+twoTest (fun x -> x < 0)
+
+Recursive
+[source,fsharp]
+let rec slowMultiply a b =
+    if b > 1 then
+        a + slowMultiply a (b - 1)
+    else
+        a
+        
+Tail recursion
+[source,fsharp]
+let slowMultiply a b =
+  let rec loop acc counter =
+    if counter > 1 then
+      loop (acc + a) (counter - 1) (* tail recursive *)
+    else
+      acc
+  loop a b
+  
+== Chaining
+
+[source,fsharp]
+[0..100]
+|> List.filter (fun x -> x % 2 = 0)
+|> List.map (fun x -> x * 2)
+|> List.sum
+
+== Structures
+
+Lists & Arrays
+[source,fsharp]
+let list1 = [2; 4; 6; 8]
+let array1 = [|2;3|]
+let array2 = [|1..10|]
+array2.[2] (*element access*)
