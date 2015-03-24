@@ -60,7 +60,15 @@ let slowMultiply a b =
     else
       acc
   loop a b
-  
+
+=== Currying and Partial Functions
+
+[source,fsharp]
+open System
+let add x y = x + y
+let addFive = add 5
+Console.WriteLine(addFive 12) // prints 17
+
 === Chaining
 
 [source,fsharp]
@@ -71,15 +79,17 @@ let slowMultiply a b =
 
 === Composition
 
-
-
-=== Currying and Partial Functions
-
+How composition function declared
 [source,fsharp]
-open System
-let add x y = x + y
-let addFive = add 5
-Console.WriteLine(addFive 12) // prints 17
+let inline (<<) f g x = f (g x)
+let inline (>>) f g x = g (f x)
+
+Samples
+[source,fsharp]
+let square x = x*x
+let half x = x/2
+let inc x = x+1
+4 |> (square >> half >> inc)  |> printfn "%9"
 
 == Structures
 
