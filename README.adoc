@@ -26,24 +26,24 @@ modifiable <- "new value"
 
 == Functions
 
-Type will be inferred
+=== Type will be inferred
 [source,fsharp]
 let add x y =
     x + y
 add 2 2
 
-Specify type explicitly
+=== Specify type explicitly
 [source,fsharp]
 let toHackerTalk (phrase:string) : string =
     phrase.Replace('t', '7').Replace('o', '0')
 
-Anonymous functioncs
+=== Anonymous functioncs
 [source,fsharp]
 let twoTest test =
     test 2
 twoTest (fun x -> x < 0)
 
-Recursive
+=== Recursive
 [source,fsharp]
 let rec slowMultiply a b =
     if b > 1 then
@@ -51,7 +51,7 @@ let rec slowMultiply a b =
     else
         a
         
-Tail recursion
+=== Tail recursion
 [source,fsharp]
 let slowMultiply a b =
   let rec loop acc counter =
@@ -61,13 +61,25 @@ let slowMultiply a b =
       acc
   loop a b
   
-== Chaining
+=== Chaining
 
 [source,fsharp]
  [0..100]
 |> List.filter (fun x -> x % 2 = 0)
 |> List.map (fun x -> x * 2)
 |> List.sum
+
+=== Composition
+
+
+
+=== Currying and Partial Functions
+
+[source,fsharp]
+open System
+let add x y = x + y
+let addFive = add 5
+Console.WriteLine(addFive 12) // prints 17
 
 == Structures
 
@@ -77,3 +89,19 @@ let list1 = [2; 4; 6; 8]
 let array1 = [|2;3|]
 let array2 = [|1..10|]
 array2.[2] (*element access*)
+
+== Pattern matching
+
+[source,fsharp]
+match expr with
+| pat1 -> 
+| pat2 -> result12
+| pat3 when expr3 -> result3
+| _ -> defaultResult
+
+=== Short functional syntax
+[source,fsharp]
+let rec factorial = function
+    | 0 | 1 -> 1
+    | n -> n * factorial (n - 1)
+
