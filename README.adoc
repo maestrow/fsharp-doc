@@ -133,6 +133,7 @@ val it : unit = ()
 == Links
 
 === Resources
+* https://msdn.microsoft.com/en-us/library/dd233154.aspx
 * http://www.tryfsharp.org/
 * http://en.wikibooks.org/wiki/F_Sharp_Programming
 * http://functional-programming.net/
