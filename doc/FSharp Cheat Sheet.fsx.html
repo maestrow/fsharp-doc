@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- 
+      The F# Cheat Sheet
+ parameters will be replaced with the 
+      document title extracted from the <h1> element or
+      file name, if there is no <h1> heading
+    -->
+    <title>F# Cheat Sheet
+</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="content/style.css" />
+    <script src="content/tips.js" type="text/javascript"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top:30px">
+        <div class="span1"></div>
+        <div class="span10" id="main">
+          <h1>F# Cheat Sheet</h1>
+
+<h2>let</h2>
+
+<p><strong>let</strong> is used to bind a name to a value. 
+Each binding has a type.</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">valueBindings</span> <span class="o">=</span> 
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">anInt</span> <span class="o">=</span> <span class="n">10</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">aFloat</span> <span class="o">=</span> <span class="n">20.0</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">aString</span> <span class="o">=</span> <span class="s">&quot;I&#39;m a string!&quot;</span>
+</code></pre></td>
+</tr>
+</table>
+
+<h3>mutable</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">mulable</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="k">mutable</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="v">modifiable</span> <span class="o">=</span> <span class="s">&quot;original value&quot;</span>
+  <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="v">modifiable</span> <span class="o">&lt;-</span> <span class="s">&quot;new value&quot;</span>
+</code></pre></td>
+</tr>
+</table>
+
+<h2>Functions</h2>
+
+<h3>Type will be inferred</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">inferred</span> <span class="o">=</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="f">add</span> <span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">x</span> <span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="i">y</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="i">x</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="i">y</span>
+  <span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="f">add</span> <span class="n">2</span> <span class="n">2</span>
+</code></pre></td>
+</tr>
+</table>
+
+<h3>Specify type explicitly</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">Specify_type_explicitly</span> <span class="o">=</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 12)" onmouseover="showTip(event, 'fs8', 12)" class="f">toHackerTalk</span> (<span onmouseout="hideTip(event, 'fs9', 13)" onmouseover="showTip(event, 'fs9', 13)" class="i">phrase</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs10', 14)" onmouseover="showTip(event, 'fs10', 14)" class="t">string</span>) <span class="o">:</span> <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="t">string</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs9', 16)" onmouseover="showTip(event, 'fs9', 16)" class="i">phrase</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs11', 17)" onmouseover="showTip(event, 'fs11', 17)" class="f">Replace</span>(<span class="s">&#39;t&#39;</span>, <span class="s">&#39;7&#39;</span>)<span class="o">.</span><span class="f">Replace</span>(<span class="s">&#39;o&#39;</span>, <span class="s">&#39;0&#39;</span>)
+</code></pre></td>
+</tr>
+</table>
+
+<h3>Anonymous functioncs</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">Anonymous</span> <span class="o">=</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 18)" onmouseover="showTip(event, 'fs12', 18)" class="f">twoTest</span> <span onmouseout="hideTip(event, 'fs13', 19)" onmouseover="showTip(event, 'fs13', 19)" class="f">test</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs13', 20)" onmouseover="showTip(event, 'fs13', 20)" class="f">test</span> <span class="n">2</span>
+  <span onmouseout="hideTip(event, 'fs12', 21)" onmouseover="showTip(event, 'fs12', 21)" class="f">twoTest</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs6', 22)" onmouseover="showTip(event, 'fs6', 22)" class="i">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs6', 23)" onmouseover="showTip(event, 'fs6', 23)" class="i">x</span> <span class="o">&lt;</span> <span class="n">0</span>)
+</code></pre></td>
+</tr>
+</table>
+
+<h3>Recursive</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">Recursive</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="k">rec</span> <span onmouseout="hideTip(event, 'fs14', 24)" onmouseover="showTip(event, 'fs14', 24)" class="f">slowMultiply</span> <span onmouseout="hideTip(event, 'fs15', 25)" onmouseover="showTip(event, 'fs15', 25)" class="i">a</span> <span onmouseout="hideTip(event, 'fs16', 26)" onmouseover="showTip(event, 'fs16', 26)" class="i">b</span> <span class="o">=</span>
+    <span class="k">if</span> <span onmouseout="hideTip(event, 'fs16', 27)" onmouseover="showTip(event, 'fs16', 27)" class="i">b</span> <span class="o">&gt;</span> <span class="n">1</span> <span class="k">then</span>
+      <span onmouseout="hideTip(event, 'fs15', 28)" onmouseover="showTip(event, 'fs15', 28)" class="i">a</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs14', 29)" onmouseover="showTip(event, 'fs14', 29)" class="f">slowMultiply</span> <span onmouseout="hideTip(event, 'fs15', 30)" onmouseover="showTip(event, 'fs15', 30)" class="i">a</span> (<span onmouseout="hideTip(event, 'fs16', 31)" onmouseover="showTip(event, 'fs16', 31)" class="i">b</span> <span class="o">-</span> <span class="n">1</span>)
+    <span class="k">else</span>
+      <span onmouseout="hideTip(event, 'fs15', 32)" onmouseover="showTip(event, 'fs15', 32)" class="i">a</span>
+</code></pre></td>
+</tr>
+</table>
+
+<h3>Tail recursion</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">Tail</span> <span class="o">=</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 33)" onmouseover="showTip(event, 'fs17', 33)" class="f">slowMultiply</span> <span onmouseout="hideTip(event, 'fs15', 34)" onmouseover="showTip(event, 'fs15', 34)" class="i">a</span> <span onmouseout="hideTip(event, 'fs16', 35)" onmouseover="showTip(event, 'fs16', 35)" class="i">b</span> <span class="o">=</span>
+    <span class="k">let</span> <span class="k">rec</span> <span onmouseout="hideTip(event, 'fs18', 36)" onmouseover="showTip(event, 'fs18', 36)" class="f">loop</span> <span onmouseout="hideTip(event, 'fs19', 37)" onmouseover="showTip(event, 'fs19', 37)" class="i">acc</span> <span onmouseout="hideTip(event, 'fs20', 38)" onmouseover="showTip(event, 'fs20', 38)" class="i">counter</span> <span class="o">=</span>
+      <span class="k">if</span> <span onmouseout="hideTip(event, 'fs20', 39)" onmouseover="showTip(event, 'fs20', 39)" class="i">counter</span> <span class="o">&gt;</span> <span class="n">1</span> <span class="k">then</span>
+        <span onmouseout="hideTip(event, 'fs18', 40)" onmouseover="showTip(event, 'fs18', 40)" class="f">loop</span> (<span onmouseout="hideTip(event, 'fs19', 41)" onmouseover="showTip(event, 'fs19', 41)" class="i">acc</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs15', 42)" onmouseover="showTip(event, 'fs15', 42)" class="i">a</span>) (<span onmouseout="hideTip(event, 'fs20', 43)" onmouseover="showTip(event, 'fs20', 43)" class="i">counter</span> <span class="o">-</span> <span class="n">1</span>) <span class="c">(* tail recursive *)</span>
+      <span class="k">else</span>
+        <span onmouseout="hideTip(event, 'fs19', 44)" onmouseover="showTip(event, 'fs19', 44)" class="i">acc</span>
+    <span onmouseout="hideTip(event, 'fs18', 45)" onmouseover="showTip(event, 'fs18', 45)" class="f">loop</span> <span onmouseout="hideTip(event, 'fs15', 46)" onmouseover="showTip(event, 'fs15', 46)" class="i">a</span> <span onmouseout="hideTip(event, 'fs16', 47)" onmouseover="showTip(event, 'fs16', 47)" class="i">b</span>
+</code></pre></td>
+</tr>
+</table>
+
+<h3>Currying and Partial Functions</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">Currying</span> <span class="o">=</span>
+  <span class="k">open</span> <span onmouseout="hideTip(event, 'fs21', 48)" onmouseover="showTip(event, 'fs21', 48)" class="i">System</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 49)" onmouseover="showTip(event, 'fs22', 49)" class="f">add</span> <span onmouseout="hideTip(event, 'fs6', 50)" onmouseover="showTip(event, 'fs6', 50)" class="i">x</span> <span onmouseout="hideTip(event, 'fs7', 51)" onmouseover="showTip(event, 'fs7', 51)" class="i">y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 52)" onmouseover="showTip(event, 'fs6', 52)" class="i">x</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs7', 53)" onmouseover="showTip(event, 'fs7', 53)" class="i">y</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 54)" onmouseover="showTip(event, 'fs23', 54)" class="f">addFive</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs22', 55)" onmouseover="showTip(event, 'fs22', 55)" class="f">add</span> <span class="n">5</span>
+  <span onmouseout="hideTip(event, 'fs24', 56)" onmouseover="showTip(event, 'fs24', 56)" class="t">Console</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs25', 57)" onmouseover="showTip(event, 'fs25', 57)" class="f">WriteLine</span>(<span onmouseout="hideTip(event, 'fs23', 58)" onmouseover="showTip(event, 'fs23', 58)" class="f">addFive</span> <span class="n">12</span>) <span class="c">// prints 17</span>
+</code></pre></td>
+</tr>
+</table>
+
+<h3>Chaining</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">Chaining</span> <span class="o">=</span>
+  [<span class="n">0..</span><span class="n">100</span>]
+  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs26', 59)" onmouseover="showTip(event, 'fs26', 59)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs27', 60)" onmouseover="showTip(event, 'fs27', 60)" class="f">filter</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs6', 61)" onmouseover="showTip(event, 'fs6', 61)" class="i">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs6', 62)" onmouseover="showTip(event, 'fs6', 62)" class="i">x</span> <span class="o">%</span> <span class="n">2</span> <span class="o">=</span> <span class="n">0</span>)
+  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs26', 63)" onmouseover="showTip(event, 'fs26', 63)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs28', 64)" onmouseover="showTip(event, 'fs28', 64)" class="f">map</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs6', 65)" onmouseover="showTip(event, 'fs6', 65)" class="i">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs6', 66)" onmouseover="showTip(event, 'fs6', 66)" class="i">x</span> <span class="o">*</span> <span class="n">2</span>)
+  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs26', 67)" onmouseover="showTip(event, 'fs26', 67)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs29', 68)" onmouseover="showTip(event, 'fs29', 68)" class="f">sum</span>
+</code></pre></td>
+</tr>
+</table>
+
+<h3>Composition</h3>
+
+<p>How composition function declared</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">delaration</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="k">inline</span> (<span class="o">&lt;&lt;</span>) <span onmouseout="hideTip(event, 'fs30', 69)" onmouseover="showTip(event, 'fs30', 69)" class="f">f</span> <span onmouseout="hideTip(event, 'fs31', 70)" onmouseover="showTip(event, 'fs31', 70)" class="f">g</span> <span onmouseout="hideTip(event, 'fs32', 71)" onmouseover="showTip(event, 'fs32', 71)" class="i">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs30', 72)" onmouseover="showTip(event, 'fs30', 72)" class="f">f</span> (<span onmouseout="hideTip(event, 'fs31', 73)" onmouseover="showTip(event, 'fs31', 73)" class="f">g</span> <span onmouseout="hideTip(event, 'fs32', 74)" onmouseover="showTip(event, 'fs32', 74)" class="i">x</span>)
+  <span class="k">let</span> <span class="k">inline</span> (<span class="o">&gt;</span><span class="o">&gt;</span>) <span onmouseout="hideTip(event, 'fs30', 75)" onmouseover="showTip(event, 'fs30', 75)" class="f">f</span> <span onmouseout="hideTip(event, 'fs33', 76)" onmouseover="showTip(event, 'fs33', 76)" class="f">g</span> <span onmouseout="hideTip(event, 'fs34', 77)" onmouseover="showTip(event, 'fs34', 77)" class="i">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 78)" onmouseover="showTip(event, 'fs33', 78)" class="f">g</span> (<span onmouseout="hideTip(event, 'fs30', 79)" onmouseover="showTip(event, 'fs30', 79)" class="f">f</span> <span onmouseout="hideTip(event, 'fs34', 80)" onmouseover="showTip(event, 'fs34', 80)" class="i">x</span>)
+</code></pre></td>
+</tr>
+</table>
+
+<p>Samples</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">Composition_sample</span> <span class="o">=</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 81)" onmouseover="showTip(event, 'fs35', 81)" class="f">square</span> <span onmouseout="hideTip(event, 'fs6', 82)" onmouseover="showTip(event, 'fs6', 82)" class="i">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 83)" onmouseover="showTip(event, 'fs6', 83)" class="i">x</span><span class="o">*</span><span onmouseout="hideTip(event, 'fs6', 84)" onmouseover="showTip(event, 'fs6', 84)" class="i">x</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 85)" onmouseover="showTip(event, 'fs36', 85)" class="f">half</span> <span onmouseout="hideTip(event, 'fs6', 86)" onmouseover="showTip(event, 'fs6', 86)" class="i">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 87)" onmouseover="showTip(event, 'fs6', 87)" class="i">x</span><span class="o">/</span><span class="n">2</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs37', 88)" onmouseover="showTip(event, 'fs37', 88)" class="f">inc</span> <span onmouseout="hideTip(event, 'fs6', 89)" onmouseover="showTip(event, 'fs6', 89)" class="i">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 90)" onmouseover="showTip(event, 'fs6', 90)" class="i">x</span><span class="o">+</span><span class="n">1</span>
+  <span class="n">4</span> <span class="o">|&gt;</span> (<span onmouseout="hideTip(event, 'fs35', 91)" onmouseover="showTip(event, 'fs35', 91)" class="f">square</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs36', 92)" onmouseover="showTip(event, 'fs36', 92)" class="f">half</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs37', 93)" onmouseover="showTip(event, 'fs37', 93)" class="f">inc</span>)  <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs38', 94)" onmouseover="showTip(event, 'fs38', 94)" class="f">printfn</span> <span class="s">&quot;</span><span class="pf">%d</span><span class="s">&quot;</span>
+</code></pre></td>
+</tr>
+</table>
+
+<h2>Pattern matching</h2>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">Pattern_matching</span> <span class="o">=</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs39', 95)" onmouseover="showTip(event, 'fs39', 95)" class="f">fn</span> <span onmouseout="hideTip(event, 'fs40', 96)" onmouseover="showTip(event, 'fs40', 96)" class="i">expr</span> <span class="o">=</span> 
+    <span class="k">match</span> <span onmouseout="hideTip(event, 'fs40', 97)" onmouseover="showTip(event, 'fs40', 97)" class="i">expr</span> <span class="k">with</span>
+    | (<span class="n">1</span>, <span class="n">1</span>)
+    | (<span class="n">2</span>, <span class="n">2</span>) <span class="k">-&gt;</span> <span class="s">&quot;ones or twos&quot;</span>
+    | (<span onmouseout="hideTip(event, 'fs15', 98)" onmouseover="showTip(event, 'fs15', 98)" class="i">a</span>, <span onmouseout="hideTip(event, 'fs16', 99)" onmouseover="showTip(event, 'fs16', 99)" class="i">b</span>) <span class="k">when</span> <span onmouseout="hideTip(event, 'fs15', 100)" onmouseover="showTip(event, 'fs15', 100)" class="i">a</span> <span class="o">&gt;</span> <span onmouseout="hideTip(event, 'fs16', 101)" onmouseover="showTip(event, 'fs16', 101)" class="i">b</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs41', 102)" onmouseover="showTip(event, 'fs41', 102)" class="f">sprintf</span> <span class="s">&quot;</span><span class="pf">%d</span><span class="s"> &gt; </span><span class="pf">%d</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs15', 103)" onmouseover="showTip(event, 'fs15', 103)" class="i">a</span> <span onmouseout="hideTip(event, 'fs16', 104)" onmouseover="showTip(event, 'fs16', 104)" class="i">b</span>
+    | (<span onmouseout="hideTip(event, 'fs15', 105)" onmouseover="showTip(event, 'fs15', 105)" class="i">a</span>, <span onmouseout="hideTip(event, 'fs16', 106)" onmouseover="showTip(event, 'fs16', 106)" class="i">b</span>) <span class="k">when</span> <span onmouseout="hideTip(event, 'fs15', 107)" onmouseover="showTip(event, 'fs15', 107)" class="i">a</span> <span class="o">&lt;</span> <span onmouseout="hideTip(event, 'fs16', 108)" onmouseover="showTip(event, 'fs16', 108)" class="i">b</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs41', 109)" onmouseover="showTip(event, 'fs41', 109)" class="f">sprintf</span> <span class="s">&quot;</span><span class="pf">%d</span><span class="s"> &lt; </span><span class="pf">%d</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs15', 110)" onmouseover="showTip(event, 'fs15', 110)" class="i">a</span> <span onmouseout="hideTip(event, 'fs16', 111)" onmouseover="showTip(event, 'fs16', 111)" class="i">b</span>
+    | _ <span class="k">-&gt;</span> <span class="s">&quot;default result&quot;</span>
+  <span onmouseout="hideTip(event, 'fs39', 112)" onmouseover="showTip(event, 'fs39', 112)" class="f">fn</span> (<span class="n">5</span>, <span class="n">6</span>)
+</code></pre></td>
+</tr>
+</table>
+
+<h3>Short functional syntax</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">Short_functional_syntax</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="k">rec</span> <span onmouseout="hideTip(event, 'fs42', 113)" onmouseover="showTip(event, 'fs42', 113)" class="f">factorial</span> <span class="o">=</span> <span class="k">function</span>
+    | <span class="n">0</span> | <span class="n">1</span> <span class="k">-&gt;</span> <span class="n">1</span>
+    | <span onmouseout="hideTip(event, 'fs43', 114)" onmouseover="showTip(event, 'fs43', 114)" class="i">n</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs43', 115)" onmouseover="showTip(event, 'fs43', 115)" class="i">n</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs42', 116)" onmouseover="showTip(event, 'fs42', 116)" class="f">factorial</span> (<span onmouseout="hideTip(event, 'fs43', 117)" onmouseover="showTip(event, 'fs43', 117)" class="i">n</span> <span class="o">-</span> <span class="n">1</span>)
+</code></pre></td>
+</tr>
+</table>
+
+<h2>Data Structures</h2>
+
+<h3>Lists &amp; Arrays</h3>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span class="t">lists</span> <span class="o">=</span>
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 118)" onmouseover="showTip(event, 'fs44', 118)" class="i">list1</span> <span class="o">=</span> [<span class="n">2</span>; <span class="n">4</span>; <span class="n">6</span>; <span class="n">8</span>]
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs45', 119)" onmouseover="showTip(event, 'fs45', 119)" class="i">array1</span> <span class="o">=</span> [|<span class="n">2</span>;<span class="n">3</span>|]
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs46', 120)" onmouseover="showTip(event, 'fs46', 120)" class="i">array2</span> <span class="o">=</span> [|<span class="n">1..</span><span class="n">10</span>|]
+  <span onmouseout="hideTip(event, 'fs46', 121)" onmouseover="showTip(event, 'fs46', 121)" class="i">array2</span><span class="o">.</span>[<span class="n">2</span>] <span class="c">(*element access*)</span>
+</code></pre></td>
+</tr>
+</table>
+
+<h3>Sequences</h3>
+
+<p>Elements in the sequence are lazily evaluated, meaning that F# does not compute values in a sequence until the values are actually needed.
+The seq type is defined as follows:</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
+<span class="l">9: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">module</span> <span onmouseout="hideTip(event, 'fs47', 122)" onmouseover="showTip(event, 'fs47', 122)" class="t">Sequences</span> <span class="o">=</span>
+  <span class="k">type</span> <span onmouseout="hideTip(event, 'fs48', 123)" onmouseover="showTip(event, 'fs48', 123)" class="t">seq</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs21', 124)" onmouseover="showTip(event, 'fs21', 124)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs49', 125)" onmouseover="showTip(event, 'fs49', 125)" class="i">Collections</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs50', 126)" onmouseover="showTip(event, 'fs50', 126)" class="i">Generic</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs51', 127)" onmouseover="showTip(event, 'fs51', 127)" class="t">IEnumerable</span><span class="o">&lt;</span><span class="o">&#39;</span><span class="i">a</span><span class="o">&gt;</span>
+
+  <span class="k">let</span> <span onmouseout="hideTip(event, 'fs52', 128)" onmouseover="showTip(event, 'fs52', 128)" class="i">allEvens</span> <span class="o">=</span> 
+    <span class="k">let</span> <span class="k">rec</span> <span onmouseout="hideTip(event, 'fs53', 129)" onmouseover="showTip(event, 'fs53', 129)" class="f">loop</span> <span onmouseout="hideTip(event, 'fs6', 130)" onmouseover="showTip(event, 'fs6', 130)" class="i">x</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs48', 131)" onmouseover="showTip(event, 'fs48', 131)" class="i">seq</span> { <span class="k">yield</span> <span onmouseout="hideTip(event, 'fs6', 132)" onmouseover="showTip(event, 'fs6', 132)" class="i">x</span>; <span class="k">yield!</span> <span onmouseout="hideTip(event, 'fs53', 133)" onmouseover="showTip(event, 'fs53', 133)" class="f">loop</span> (<span onmouseout="hideTip(event, 'fs6', 134)" onmouseover="showTip(event, 'fs6', 134)" class="i">x</span> <span class="o">+</span> <span class="n">2</span>) }
+    <span onmouseout="hideTip(event, 'fs53', 135)" onmouseover="showTip(event, 'fs53', 135)" class="f">loop</span> <span class="n">0</span>
+  
+  <span class="k">for</span> <span onmouseout="hideTip(event, 'fs15', 136)" onmouseover="showTip(event, 'fs15', 136)" class="i">a</span> <span class="k">in</span> (<span onmouseout="hideTip(event, 'fs54', 137)" onmouseover="showTip(event, 'fs54', 137)" class="t">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs55', 138)" onmouseover="showTip(event, 'fs55', 138)" class="f">take</span> <span class="n">5</span> <span onmouseout="hideTip(event, 'fs52', 139)" onmouseover="showTip(event, 'fs52', 139)" class="i">allEvens</span>) <span class="k">do</span>
+    <span onmouseout="hideTip(event, 'fs38', 140)" onmouseover="showTip(event, 'fs38', 140)" class="f">printfn</span> <span class="s">&quot;</span><span class="pf">%i</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs15', 141)" onmouseover="showTip(event, 'fs15', 141)" class="i">a</span>
+</code></pre></td>
+</tr>
+</table>
+
+<h2>Links</h2>
+
+<h3>Resources</h3>
+
+<ul>
+<li><a href="http://fsharp.org/about/learning.html">http://fsharp.org/about/learning.html</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/dd233154.aspx">https://msdn.microsoft.com/en-us/library/dd233154.aspx</a></li>
+<li><a href="http://www.tryfsharp.org/">http://www.tryfsharp.org/</a></li>
+<li><a href=""><a href="http://en.wikibooks.org/wiki/F_Sharp_Programming">http://en.wikibooks.org/wiki/F_Sharp_Programming</a></a></li>
+<li><a href="http://functional-programming.net/">http://functional-programming.net/</a></li>
+</ul>
+
+<h3>Articles and questions</h3>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/2669299/when-do-you-put-double-semicolons-in-f">http://stackoverflow.com/questions/2669299/when-do-you-put-double-semicolons-in-f</a></li>
+<li><a href="http://blogs.msdn.com/b/chrsmith/archive/2008/06/14/function-composition.aspx">Compare imperative programming, function chaining and function composition</a>.</li>
+</ul>
+
+          <div class="tip" id="fs1">val anInt : int<br /><br />Full name: FSharp Cheat Sheet.valueBindings.anInt</div>
+<div class="tip" id="fs2">val aFloat : float<br /><br />Full name: FSharp Cheat Sheet.valueBindings.aFloat</div>
+<div class="tip" id="fs3">val aString : string<br /><br />Full name: FSharp Cheat Sheet.valueBindings.aString</div>
+<div class="tip" id="fs4">val mutable modifiable : string<br /><br />Full name: FSharp Cheat Sheet.mulable.modifiable</div>
+<div class="tip" id="fs5">val add : x:int -&gt; y:int -&gt; int<br /><br />Full name: FSharp Cheat Sheet.inferred.add</div>
+<div class="tip" id="fs6">val x : int</div>
+<div class="tip" id="fs7">val y : int</div>
+<div class="tip" id="fs8">val toHackerTalk : phrase:string -&gt; string<br /><br />Full name: FSharp Cheat Sheet.Specify_type_explicitly.toHackerTalk</div>
+<div class="tip" id="fs9">val phrase : string</div>
+<div class="tip" id="fs10">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs11">System.String.Replace(oldValue: string, newValue: string) : string<br />System.String.Replace(oldChar: char, newChar: char) : string</div>
+<div class="tip" id="fs12">val twoTest : test:(int -&gt; &#39;a) -&gt; &#39;a<br /><br />Full name: FSharp Cheat Sheet.Anonymous.twoTest</div>
+<div class="tip" id="fs13">val test : (int -&gt; &#39;a)</div>
+<div class="tip" id="fs14">val slowMultiply : a:int -&gt; b:int -&gt; int<br /><br />Full name: FSharp Cheat Sheet.Recursive.slowMultiply</div>
+<div class="tip" id="fs15">val a : int</div>
+<div class="tip" id="fs16">val b : int</div>
+<div class="tip" id="fs17">val slowMultiply : a:int -&gt; b:int -&gt; int<br /><br />Full name: FSharp Cheat Sheet.Tail.slowMultiply</div>
+<div class="tip" id="fs18">val loop : (int -&gt; int -&gt; int)</div>
+<div class="tip" id="fs19">val acc : int</div>
+<div class="tip" id="fs20">val counter : int</div>
+<div class="tip" id="fs21">namespace System</div>
+<div class="tip" id="fs22">val add : x:int -&gt; y:int -&gt; int<br /><br />Full name: FSharp Cheat Sheet.Currying.add</div>
+<div class="tip" id="fs23">val addFive : (int -&gt; int)<br /><br />Full name: FSharp Cheat Sheet.Currying.addFive</div>
+<div class="tip" id="fs24">type Console =<br />&#160;&#160;static member BackgroundColor : ConsoleColor with get, set<br />&#160;&#160;static member Beep : unit -&gt; unit + 1 overload<br />&#160;&#160;static member BufferHeight : int with get, set<br />&#160;&#160;static member BufferWidth : int with get, set<br />&#160;&#160;static member CapsLock : bool<br />&#160;&#160;static member Clear : unit -&gt; unit<br />&#160;&#160;static member CursorLeft : int with get, set<br />&#160;&#160;static member CursorSize : int with get, set<br />&#160;&#160;static member CursorTop : int with get, set<br />&#160;&#160;static member CursorVisible : bool with get, set<br />&#160;&#160;...<br /><br />Full name: System.Console</div>
+<div class="tip" id="fs25">Console.WriteLine() : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />Console.WriteLine(value: string) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />Console.WriteLine(value: obj) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />Console.WriteLine(value: uint64) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />Console.WriteLine(value: int64) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />Console.WriteLine(value: uint32) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />Console.WriteLine(value: int) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />Console.WriteLine(value: float32) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />Console.WriteLine(value: float) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />Console.WriteLine(value: decimal) : unit<br />&#160;&#160;&#160;<em>(+0 other overloads)</em></div>
+<div class="tip" id="fs26">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =<br />&#160;&#160;| ( [] )<br />&#160;&#160;| ( :: ) of Head: &#39;T * Tail: &#39;T list<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IEnumerable&lt;&#39;T&gt;<br />&#160;&#160;member Head : &#39;T<br />&#160;&#160;member IsEmpty : bool<br />&#160;&#160;member Item : index:int -&gt; &#39;T with get<br />&#160;&#160;member Length : int<br />&#160;&#160;member Tail : &#39;T list<br />&#160;&#160;static member Cons : head:&#39;T * tail:&#39;T list -&gt; &#39;T list<br />&#160;&#160;static member Empty : &#39;T list<br /><br />Full name: Microsoft.FSharp.Collections.List&lt;_&gt;</div>
+<div class="tip" id="fs27">val filter : predicate:(&#39;T -&gt; bool) -&gt; list:&#39;T list -&gt; &#39;T list<br /><br />Full name: Microsoft.FSharp.Collections.List.filter</div>
+<div class="tip" id="fs28">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; list:&#39;T list -&gt; &#39;U list<br /><br />Full name: Microsoft.FSharp.Collections.List.map</div>
+<div class="tip" id="fs29">val sum : list:&#39;T list -&gt; &#39;T (requires member ( + ) and member get_Zero)<br /><br />Full name: Microsoft.FSharp.Collections.List.sum</div>
+<div class="tip" id="fs30">val f : (&#39;a -&gt; &#39;b)</div>
+<div class="tip" id="fs31">val g : (&#39;c -&gt; &#39;a)</div>
+<div class="tip" id="fs32">val x : &#39;c</div>
+<div class="tip" id="fs33">val g : (&#39;b -&gt; &#39;c)</div>
+<div class="tip" id="fs34">val x : &#39;a</div>
+<div class="tip" id="fs35">val square : x:int -&gt; int<br /><br />Full name: FSharp Cheat Sheet.Composition_sample.square</div>
+<div class="tip" id="fs36">val half : x:int -&gt; int<br /><br />Full name: FSharp Cheat Sheet.Composition_sample.half</div>
+<div class="tip" id="fs37">val inc : x:int -&gt; int<br /><br />Full name: FSharp Cheat Sheet.Composition_sample.inc</div>
+<div class="tip" id="fs38">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.printfn</div>
+<div class="tip" id="fs39">val fn : int * int -&gt; string<br /><br />Full name: FSharp Cheat Sheet.Pattern_matching.fn</div>
+<div class="tip" id="fs40">val expr : int * int</div>
+<div class="tip" id="fs41">val sprintf : format:Printf.StringFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.sprintf</div>
+<div class="tip" id="fs42">val factorial : _arg1:int -&gt; int<br /><br />Full name: FSharp Cheat Sheet.Short_functional_syntax.factorial</div>
+<div class="tip" id="fs43">val n : int</div>
+<div class="tip" id="fs44">val list1 : int list<br /><br />Full name: FSharp Cheat Sheet.lists.list1</div>
+<div class="tip" id="fs45">val array1 : int []<br /><br />Full name: FSharp Cheat Sheet.lists.array1</div>
+<div class="tip" id="fs46">val array2 : int []<br /><br />Full name: FSharp Cheat Sheet.lists.array2</div>
+<div class="tip" id="fs47">module Sequences<br /><br />from FSharp Cheat Sheet</div>
+<div class="tip" id="fs48">Multiple items<br />val seq : sequence:seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.Operators.seq<br /><br />--------------------<br />type seq&lt;&#39;a&gt; = System.Collections.Generic.IEnumerable&lt;&#39;a&gt;<br /><br />Full name: FSharp Cheat Sheet.Sequences.seq&lt;_&gt;</div>
+<div class="tip" id="fs49">namespace System.Collections</div>
+<div class="tip" id="fs50">namespace System.Collections.Generic</div>
+<div class="tip" id="fs51">type IEnumerable&lt;&#39;T&gt; =<br />&#160;&#160;member GetEnumerator : unit -&gt; IEnumerator&lt;&#39;T&gt;<br /><br />Full name: System.Collections.Generic.IEnumerable&lt;_&gt;</div>
+<div class="tip" id="fs52">val allEvens : seq&lt;int&gt;<br /><br />Full name: FSharp Cheat Sheet.Sequences.allEvens</div>
+<div class="tip" id="fs53">val loop : (int -&gt; seq&lt;int&gt;)</div>
+<div class="tip" id="fs54">module Seq<br /><br />from Microsoft.FSharp.Collections</div>
+<div class="tip" id="fs55">val take : count:int -&gt; source:seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.Seq.take</div>
+          
+        </div>
+        <div class="span1"></div>
+      </div>
+    </div>
+  </body>
+</html>
